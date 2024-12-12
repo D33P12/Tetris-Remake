@@ -73,14 +73,14 @@ public class LevelTypeNav : MonoBehaviour
         }
         else if (_currentRow == 1)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
     }
     void UndoSelection()
     {
         if (!_firstSelectionMade)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             return;
         }
         for (int row = 0; row < _rows.Count; row++)
