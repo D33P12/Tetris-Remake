@@ -16,6 +16,8 @@ public class LevelTypeNav : MonoBehaviour
         _rows = new List<List<Button>> { row1Buttons, row2Buttons };
         _selectedButtons = new Button[_rows.Count];
         HighlightButton();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void Update()
     {

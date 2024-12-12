@@ -10,12 +10,14 @@ public class SelectGameNavScript : MonoBehaviour
         public List<Button> buttons;
     }
     [SerializeField] private List<ButtonRow> buttonGrid;
-    private int currentRow = 0;
-    private int currentColumn = 0;
+    private int _currentRow = 0;
+    private int _currentColumn = 0;
 
     void Start()
     {
         HighlightButton();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -35,24 +37,24 @@ public class SelectGameNavScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            currentRow = Mathf.Max(0, currentRow - 1);
-            currentColumn = Mathf.Min(currentColumn, buttonGrid[currentRow].buttons.Count - 1);
+            _currentRow = Mathf.Max(0, _currentRow - 1);
+            _currentColumn = Mathf.Min(_currentColumn, buttonGrid[_currentRow].buttons.Count - 1);
             HighlightButton();
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            currentRow = Mathf.Min(buttonGrid.Count - 1, currentRow + 1);
-            currentColumn = Mathf.Min(currentColumn, buttonGrid[currentRow].buttons.Count - 1);
+            _currentRow = Mathf.Min(buttonGrid.Count - 1, _currentRow + 1);
+            _currentColumn = Mathf.Min(_currentColumn, buttonGrid[_currentRow].buttons.Count - 1);
             HighlightButton();
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            currentColumn = Mathf.Max(0, currentColumn - 1);
+            _currentColumn = Mathf.Max(0, _currentColumn - 1);
             HighlightButton();;
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            currentColumn = Mathf.Min(buttonGrid[currentRow].buttons.Count - 1, currentColumn + 1);
+            _currentColumn = Mathf.Min(buttonGrid[_currentRow].buttons.Count - 1, _currentColumn + 1);
             HighlightButton();
         }
     }
@@ -65,7 +67,7 @@ public class SelectGameNavScript : MonoBehaviour
                 button.GetComponent<Image>().color = Color.black;
             }
         }
-        buttonGrid[currentRow].buttons[currentColumn].GetComponent<Image>().color = Color.white;
+        buttonGrid[_currentRow].buttons[_currentColumn].GetComponent<Image>().color = Color.white;
     }
     
 }
